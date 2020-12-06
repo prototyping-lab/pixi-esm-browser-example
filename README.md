@@ -27,11 +27,10 @@ Example of how to create a Pixel Platformer in PIXI.js using ES6 Modules directl
 
 ## Assets
 
-- little guy
-  - `bitcraftlab-littleguy.png` — 8 frames walking animation — created with Piksel App + TexturePacker
-  - `bitcraftlab-littleguy.json` — spritesheet data created with TexturePacker. Adjusted anchor points / pivot points to create a convincing animation
-  - `kenney-pixelpal.png` — free sprite from kenney's [simplified-platformer-pack](https://www.kenney.nl/assets/simplified-platformer-pack)
-  - `kenney-tilesheet.png` — free tiles from kenney's  [simplified-platformer-pack](https://www.kenney.nl/assets/simplified-platformer-pack)
+- `bitcraftlab-littleguy.png` — 8 frames walking animation — created with Piksel App + TexturePacker
+- `bitcraftlab-littleguy.json` — spritesheet data created with TexturePacker. Adjusted anchor points / pivot points to create a convincing animation
+- `kenney-pixelpal.png` — free sprite from kenney's [simplified-platformer-pack](https://www.kenney.nl/assets/simplified-platformer-pack)
+- `kenney-tilesheet.png` — free tiles from kenney's  [simplified-platformer-pack](https://www.kenney.nl/assets/simplified-platformer-pack)
 ## Tools
 
 - [Piksel App](https://www.piskelapp.com/) to create animations

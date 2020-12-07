@@ -1,4 +1,4 @@
-import * as PIXI from "./pixi.mjs";
+import * as PIXI from "./pixi.js";
 
 // just replace one color by an other one ...
 export default function colorFilter(oldColor, newColor) {

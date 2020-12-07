@@ -1,6 +1,6 @@
-import * as PIXI from "./pixi.mjs";
-import stepper from "./stepper.mjs";
-import controller from "./controller.mjs";
+import * as PIXI from "./pixi.js";
+import stepper from "./stepper.js";
+import controller from "./controller.js";
 
 // extend PIXIs animated sprite
 export class PixelSprite extends PIXI.AnimatedSprite {

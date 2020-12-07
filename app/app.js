@@ -1,9 +1,9 @@
 // Import all
-import * as PIXI from "./pixi.mjs";
-import resize from "./resize.mjs";
-import { FloatingSprite, AnchoredSprite, StepperSprite } from "./sprite.mjs";
-import colorFilter from "./colorFilter.mjs";
-import TiledMap from './tiledmap.mjs';
+import * as PIXI from "./pixi.js";
+import resize from "./resize.js";
+import { FloatingSprite, AnchoredSprite, StepperSprite } from "./sprite.js";
+import colorFilter from "./colorFilter.js";
+import TiledMap from './tiledmap.js';
 
 // options for pixi app
 const options = {

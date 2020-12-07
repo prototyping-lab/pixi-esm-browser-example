@@ -1,4 +1,4 @@
-import { RectTileLayer } from "./pixi-tilemap.mjs";
+import { RectTileLayer } from "./pixi-tilemap.js";
 
 export default class TiledMap extends RectTileLayer {
 

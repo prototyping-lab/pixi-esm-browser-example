@@ -11,8 +11,8 @@
  * Copyright 2019-2020, Ivan Popelyshev, All Rights Reserved
  */
 
-import * as PIXI from "./pixi.mjs";
-import { Container, Resource, Bounds, Texture, Shader, Program, Geometry, Buffer, ObjectRenderer, BaseTexture, Renderer, SCALE_MODES, DRAW_MODES, ALPHA_MODES, WRAP_MODES, groupD8, Matrix, Graphics, Sprite } from "./pixi.mjs";
+import * as PIXI from "./pixi.js";
+import { Container, Resource, Bounds, Texture, Shader, Program, Geometry, Buffer, ObjectRenderer, BaseTexture, Renderer, SCALE_MODES, DRAW_MODES, ALPHA_MODES, WRAP_MODES, groupD8, Matrix, Graphics, Sprite } from "./pixi.js";
 
 class CanvasTileRenderer {
     constructor(renderer) {

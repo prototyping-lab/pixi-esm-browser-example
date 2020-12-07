@@ -1,4 +1,4 @@
-import keyboard from "./keyboard.mjs";
+import keyboard from "./keyboard.js";
 
 let left = keyboard("ArrowLeft");
 let right = keyboard("ArrowRight");

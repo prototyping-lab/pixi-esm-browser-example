@@ -1,7 +1,7 @@
-import { AdvancedBloomFilter } from "./filters/filter-advanced-bloom.js";
-//import { AdvancedBloomFilter } from "./filters/filter-bloom.js";
 
-let bloom = new AdvancedBloomFilter();
+import { AdvancedBloomFilter } from "./filters/filter-advanced-bloom.js";
+
+let bloom = new AdvancedBloomFilter ({ brightness: 0, blur:4 });
 
 // add glow when hovering ...
 export default function hilite(g) {

@@ -32,8 +32,8 @@ function startup() {
   // dynamically resize the app to fixed aspect ratio
   resize(aspectRatio);
 
+  // create a custom stage
   const stage = new PIXI.Container();
-  //const stage = app.stage;
 
   // Use hexgrid
   const hexgrid = new HexGrid();
@@ -52,14 +52,14 @@ function startup() {
   // create some polys and add them to the stage   
   const radius = 150;
   const poly = new RegularPoly(8, radius, 22.5);
-  poly.x = app.renderer.width / 2;
-  poly.y = app.renderer.height / 2;
+  poly.x = options.width / 2;
+  poly.y = options.height / 2;
   //hex.angle = 30;
   stage.addChild(poly);
 
   let poly2 = new RegularPoly(6, radius, 30);
-  poly2.x = app.renderer.width / 2 + 2 * radius;
-  poly2.y = app.renderer.height / 2;
+  poly2.x = options.width / 2 + 2 * radius;
+  poly2.y = options.height / 2;
   //hex2.angle = 30;
   stage.addChild(poly2);
 
@@ -68,12 +68,13 @@ function startup() {
   const bf = new PIXI.filters.BlurFilter(2);
   stage.filters = [bf];
 
+  // add custom stage to app stage
   app.stage.addChild(stage);
 
   // fullscreen('f', 'Control');
   fullscreen("f");
 
-  // fullscreen('h', 'Control');
+  // helpscreen('h', 'Control');
   helpscreen("h");
     
   

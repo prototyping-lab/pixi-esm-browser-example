@@ -1,21 +1,15 @@
-import { app } from "./pixi-app.js";
+import { options } from "./pixi-app.js";
 import * as PIXI from "./pixi.js";
 import Voronoi from "./voronoi-core.js";
 import { Poly } from "./poly.js";
 
-export class VoronoiDiagram extends PIXI.Graphics {
+const bbox = { xl: 0, xr: options.width, yt: 0, yb: options.height };
 
-  constructor( pts ) {
+export class VoronoiDiagram extends PIXI.Graphics {
+  constructor(pts) {
     super();
 
     const voronoi = new Voronoi();
-
-    const bbox = {
-      xl: 0,
-      xr: app.renderer.width,
-      yt: 0,
-      yb: app.renderer.height,
-    };
 
     // create voronoi diagram
     const diagram = voronoi.compute(pts, bbox);
@@ -26,7 +20,7 @@ export class VoronoiDiagram extends PIXI.Graphics {
     this.drawCells();
   }
 
-  drawVertices(verts, color = 0x333333 ) {
+  drawVertices(verts, color = 0x333333) {
     const g = this;
     const r = 5; // point radius
     g.lineStyle(0);
@@ -52,7 +46,6 @@ export class VoronoiDiagram extends PIXI.Graphics {
     // draw cells
 
     g.lineStyle(6, 0x000000, 0.1, 0.5);
-    //g.beginFill(0x333333, 0.3);
     const cells = this.diagram.cells;
     cells.forEach((cell) => {
       const pts = cell.halfedges.map((e) => {
@@ -65,19 +58,12 @@ export class VoronoiDiagram extends PIXI.Graphics {
 }
 
 export class VoronoiButtons extends PIXI.Container {
-
-  constructor( pts ) { 
+  constructor(pts) {
     super();
-    const bbox = {
-      xl: 0,
-      xr: app.renderer.width,
-      yt: 0,
-      yb: app.renderer.height,
-    };
-    
+
     const voronoi = new Voronoi();
     const diagram = voronoi.compute(pts, bbox);
-    
+
     diagram.cells.forEach((cell) => {
       const pts = cell.halfedges.map((e) => {
         const p = e.getStartpoint();
@@ -85,13 +71,5 @@ export class VoronoiButtons extends PIXI.Container {
       });
       this.addChild(new Poly(pts));
     });
-
-    // add blur filter on top
-    /*
-    const bf = new PIXI.filters.BlurFilter( 2, 4);
-    this.filters = [bf];
-    */
-
   }
-
 }

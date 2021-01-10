@@ -1,59 +1,67 @@
 // Import all
-import * as PIXI from "./pixi.js";
+
+import TiledMap from './tiledmap.js';
+import { app, options } from "./pixi-app.js";
 import resize from "./resize.js";
 import { FloatingSprite, AnchoredSprite, StepperSprite } from "./sprite.js";
-import colorFilter from "./colorFilter.js";
-import TiledMap from './tiledmap.js';
+import colorFilter from "./filters/colorFilter.js";
+import fullscreen from "./fullscreen.js";
+import Poly from "./poly.js";
+import webfonts from "./webfonts.js";
+import helpscreen from "./helpscreen.js";
+import hilite from './hilite.js';
 
-// options for pixi app
-const options = {
-  antialias: false,
-  autoDensity: true,
-  backgroundColor: "0xaaaaaa",
-  width: 512,
-  height: 512
-};
+(async () => {
+  // make sure to load all webfonts first
+  await webfonts(["Staatliches", "Raleway:700"]);
 
-// Create application
-const app = new PIXI.Application(options);
-
-let pixelSize = 1;
-let aspectRatio = options.width / options.height;
-
-// Load sprite atlas
-app.loader
-  .add("littleguy", "assets/bitcraft-littleguy.json")
-  .add("pixelpal", "assets/kenney-pixelpal.json")
-  .add("tilesheet", "assets/kenney-tilesheet.json")
-  .add("tiledmap", "assets/tiled-tilemap-8x8.json")
-  .load(startup);
-
-// dynamically resize the app to fixed aspect ratio
-resize(app, aspectRatio);
+  // then load everything else using the pixi loader
+  app.loader
+    .add("littleguy", "assets/bitcraft-littleguy.json")
+    .add("pixelpal", "assets/kenney-pixelpal.json")
+    .add("tilesheet", "assets/kenney-tilesheet.json")
+    .add("tiledmap", "assets/tiled-tilemap-8x8.json")
+    .load(startup);
+})();
 
 // start animation
 function startup() {
+  let aspectRatio = options.width / options.height;
+
+  // dynamically resize the app to fixed aspect ratio
+  resize(aspectRatio);
 
   let layer = new TiledMap(app, "tilesheet", "tiledmap"); 
   app.stage.addChild(layer);
 
+
   // create a sprite the animates while moving
-  let pixelpal = new FloatingSprite(app, "pixelpal", "walk", 1);
+  let pixelpal = new FloatingSprite("pixelpal", "walk", 2);
   app.stage.addChild(pixelpal);
 
   // create a sprite that uses anchors for animation
-  let littleguy = new AnchoredSprite(app, "littleguy", "walk", 5);
+  let littleguy = new AnchoredSprite("littleguy", "walk", 10);
   app.stage.addChild(littleguy);
 
   // create a sprite that lets us step through individual frames using arrow keys
-  let stepperguy = new StepperSprite(app, "littleguy", "walk", 5);
+  let stepperguy = new StepperSprite("littleguy", "walk", 10);
 
   // add a custom color filter, because we can ...
   stepperguy.filters = [
     colorFilter(0xff3333, 0x3333ff),
-    colorFilter(0xcc0000, 0x0000cc),
+    colorFilter(0xcc0000, 0x0000cc)
   ];
 
+  hilite(littleguy);
+  hilite(stepperguy);
+  hilite(pixelpal);
+
   app.stage.addChild(stepperguy);
+
+  // fullscreen('f', 'Control');
+  fullscreen("f");
+  
+  // fullscreen('h', 'Control');
+  helpscreen("h");
   
 }

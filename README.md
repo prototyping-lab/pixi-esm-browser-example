@@ -13,17 +13,28 @@ Example of how to create a Pixel Platformer in PIXI.js using ES6 Modules directl
 
 ## Modules
 
-- `app.mjs` — the demo app
-- `sprite.mjs` — custom sprite classes with asset loading
+- `app.js` — the demo app
+- `sprite.js` — custom sprite classes with asset loading
   - `FloatingSprite` (moving continuously) 
   - `AnchoredSprite` (using anchors for each frame)
-  - `StepperSprite` (for debugging of animations)
-- `keyboard.mjs` — keyboard events and states
-- `controller.mjs` — your own extensible controller (add voice control, gesture control, etc here)
-- `resize.mjs` — function to resize the stage dynamically
-- `tiledmap.mjs` — load tile maps created by Tiled Map Editor
-- `pixi-tilemap.mjs` — efficient implementation of tilemaps. ([pixi-tilemap](https://github.com/pixijs/pixi-tilemap) bundled as ESM for usage in the browser)
-- `colorFilter.mjs` — just a quick color filter to change individual sprite colors using a GLSL fragement shader
+  - `StepperSprite` (anchored sprite with keyboard control for debugging of animations)
+- `keyboard.js` — keyboard events and states
+- `controller.js` — your own extensible controller (add voice control, gesture control, etc here)
+- `resize.js` — function to resize the stage dynamically
+- `fullscreen.js` —  toggle fullscreen
+- `helpscreen.js`—  toggle help screen
+- `tiledmap.js` — load tile maps created by Tiled Map Editor
+- `pixi-tilemap.js` — efficient implementation of tilemaps. ([pixi-tilemap](https://github.com/pixijs/pixi-tilemap) bundled as ESM for usage in the browser)
+- `filters` - directory for filter modules
+  - `colorFilter.js` — just a quick color filter to change individual sprite colors using a GLSL fragement shader
+  - all other filters are from [pixi-filters](https://github.com/pixijs/pixi-filters)
+- `hilite.js` —  function to hilite graphics on mouse hover
+- `poly.js` —  example for a custom graphics object
+- `webfonts.js` —  function to load google webfonts using [webfont loader](https://github.com/typekit/webfontloader) 
+- `math.js` —  Javascript math functions  as ES6 modules (so we can write `sin` instead of `Math.sin`)  
+See `poly.js` for an example
+
+
 
 ## Assets
 

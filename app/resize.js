@@ -1,5 +1,7 @@
+import { app } from './pixi-app.js';
+
 // dynamically resize the renderer to fit the window
-export default function resizeWindow(app, ratio) {
+export default function resizeWindow(ratio) {
 
   document.body.appendChild(app.view);
 
@@ -11,12 +13,13 @@ export default function resizeWindow(app, ratio) {
 
   // scale the renderer to match the window size
   function resize() {
+    let w, h;
     if (window.innerWidth / window.innerHeight >= ratio) {
-      var w = window.innerHeight * ratio;
-      var h = window.innerHeight;
+      w = window.innerHeight * ratio;
+      h = window.innerHeight;
     } else {
-      var w = window.innerWidth;
-      var h = window.innerWidth / ratio;
+      w = window.innerWidth;
+      h = window.innerWidth / ratio;
     }
     app.renderer.view.style.width = w + "px";
     app.renderer.view.style.height = h + "px";

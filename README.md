@@ -26,7 +26,8 @@ Example of how to create a Pixel Platformer in PIXI.js using ES6 Modules directl
 - `math.js` —  Javascript math functions  as ES6 modules (so we can write `sin` instead of `Math.sin`)  
 See `poly.js` for an example
 
-- `hexgrid.js` —  function to draw a hexagon grid in the background, using `honeycomb.min.js` — the [Honeycomb library](https://github.com/flauwekeul/honeycomb) ([esm here](https://unpkg.com/honeycomb-grid@3.1.7/dist/honeycomb.esm.min.js))
+- `hexgrid.js` —  function to draw a hexagon grid in the background, using `honeycomb.min.js` from the [honeycomb library](https://github.com/flauwekeul/honeycomb) ([esm here](https://unpkg.com/honeycomb-grid@3.1.7/dist/honeycomb.esm.min.js))
+- `voronoidiagram.js` —  functions to draw voronoi diagram, using `voronoi-core.js` from this [voronoi library](https://github.com/gregross/javascript-voronoi).
 
 # License
 

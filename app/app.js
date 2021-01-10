@@ -58,6 +58,21 @@ function startup() {
 
   app.stage.addChild(stepperguy);
 
+  // create some custom graphics and add it to the stage
+
+  const radius = 100;
+  const poly = new Poly(8, radius, 22.5);
+  poly.x = app.renderer.width / 2;
+  poly.y = app.renderer.height / 2;
+  //hex.angle = 30;
+  app.stage.addChild(poly);
+
+  let poly2 = new Poly(6, radius, 30);
+  poly2.x = app.renderer.width / 2 + 2 * radius;
+  poly2.y = app.renderer.height / 2;
+  //hex2.angle = 30;
+  app.stage.addChild(poly2);
+
   // fullscreen('f', 'Control');
   fullscreen("f");
   

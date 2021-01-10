@@ -2,10 +2,13 @@
 import { app, options } from "./pixi-app.js";
 import resize from "./resize.js";
 import fullscreen from "./fullscreen.js";
-import Poly from "./poly.js";
+import { RegularPoly, polyPoints } from "./poly.js";
 import webfonts from "./webfonts.js";
 import helpscreen from "./helpscreen.js";
 import HexGrid from "./hexgrid.js";
+import { VoronoiButtons } from "./voronoidiagram.js"
+import * as PIXI from "./pixi.js";
+
 // import hilite from './hilite.js';
 
 (async () => {
@@ -23,34 +26,55 @@ import HexGrid from "./hexgrid.js";
 
 // start animation
 function startup() {
+  
   let aspectRatio = options.width / options.height;
 
   // dynamically resize the app to fixed aspect ratio
   resize(aspectRatio);
 
+  const stage = new PIXI.Container();
+  //const stage = app.stage;
+
   // Use hexgrid
-  const grid = new HexGrid();
-  app.stage.addChild(grid);
+  const hexgrid = new HexGrid();
+  stage.addChild(hexgrid);
 
-  // create some polys and add them to the stage
+  //Create a voronoi diagram
+  const w = options.width;
+  const h = options.height;
+  let pts = [
+     ... polyPoints(w / 2 - 240, h / 2, 12, 300),
+     ... polyPoints(w / 2 + 240, h / 2, 12, 300) 
+  ];
+  const grid = new VoronoiButtons(pts);
+  stage.addChild(grid);
 
-  const radius = 100;
-  const poly = new Poly(8, radius, 22.5);
+  // create some polys and add them to the stage   
+  const radius = 150;
+  const poly = new RegularPoly(8, radius, 22.5);
   poly.x = app.renderer.width / 2;
   poly.y = app.renderer.height / 2;
   //hex.angle = 30;
-  app.stage.addChild(poly);
+  stage.addChild(poly);
 
-  let poly2 = new Poly(6, radius, 30);
+  let poly2 = new RegularPoly(6, radius, 30);
   poly2.x = app.renderer.width / 2 + 2 * radius;
   poly2.y = app.renderer.height / 2;
   //hex2.angle = 30;
-  app.stage.addChild(poly2);
+  stage.addChild(poly2);
+
+  // add blur filter on top
+    
+  const bf = new PIXI.filters.BlurFilter(2);
+  stage.filters = [bf];
+
+  app.stage.addChild(stage);
 
   // fullscreen('f', 'Control');
   fullscreen("f");
-  
+
   // fullscreen('h', 'Control');
   helpscreen("h");
+    
   
 }

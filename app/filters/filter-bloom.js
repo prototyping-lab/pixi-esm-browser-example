@@ -5,12 +5,9 @@
  * @pixi/filter-bloom is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  */
-import { Filter } from '../pixi.js';
-import { BLEND_MODES } from '../pixi.js';
-import { AlphaFilter } from './filter-alpha.js';
-import { BlurFilterPass } from './filter-blur.js';
-import { settings } from '../pixi.js';
-import { Point } from '../pixi.js';
+import { Filter, BLEND_MODES, settings, filters, Point } from '../pixi.js';
+const AlphaFilter =  filters.AlphaFilter;
+const BlurFilterPass = filters.BlurFilterPass;
 
 /**
  * The BloomFilter applies a Gaussian blur to an object.

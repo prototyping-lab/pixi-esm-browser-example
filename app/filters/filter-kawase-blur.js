@@ -5,8 +5,7 @@
  * @pixi/filter-kawase-blur is licensed under the MIT License.
  * http://www.opensource.org/licenses/mit-license
  */
-import { Filter } from '../pixi.js';
-import { Point } from '../pixi.js';
+import { Filter, Point } from '../pixi.js';
 
 var vertex = "attribute vec2 aVertexPosition;\nattribute vec2 aTextureCoord;\n\nuniform mat3 projectionMatrix;\n\nvarying vec2 vTextureCoord;\n\nvoid main(void)\n{\n    gl_Position = vec4((projectionMatrix * vec3(aVertexPosition, 1.0)).xy, 0.0, 1.0);\n    vTextureCoord = aTextureCoord;\n}";
 

@@ -1,9 +1,29 @@
 import keyboard from "./keyboard.js";
 
-let left = keyboard("ArrowLeft");
-let right = keyboard("ArrowRight");
-let up = keyboard("ArrowUp");
-let down = keyboard("ArrowDown");
+
+let left = oneof("ArrowLeft", "a");
+let right = oneof("ArrowRight", "d");
+let up = oneof("ArrowUp", "w");
+let down = oneof("ArrowDown", "s");
+
+// use any of the keycodes
+function oneof(... keycodes) {
+  let keys = keycodes.map( keyboard );
+  return {
+    // setter to set the press functions on all the keys
+    set press(fn) {
+      for(let key in keys) {
+        keys[key].press = fn;
+      }
+    },
+    // setter to set the release functions on all the keys
+    set release(fn) {
+      for(let key in keys) {
+        keys[key].release = fn;
+      }
+    }
+  }
+}
 
 /*
 left.press = () => {

@@ -9,6 +9,7 @@ import fullscreen from "./fullscreen.js";
 import Poly from "./poly.js";
 import webfonts from "./webfonts.js";
 import helpscreen from "./helpscreen.js";
+import menuscreen from "./menu.js";
 import hilite from './hilite.js';
 
 (async () => {
@@ -33,7 +34,6 @@ function startup() {
 
   let layer = new TiledMap(app, "tilesheet", "tiledmap"); 
   app.stage.addChild(layer);
-
 
   // create a sprite the animates while moving
   let pixelpal = new FloatingSprite("pixelpal", "walk", 2);
@@ -78,5 +78,9 @@ function startup() {
   
   // fullscreen('h', 'Control');
   helpscreen("h");
+
+  menuscreen("m");
+
+
   
 }

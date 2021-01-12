@@ -3,6 +3,49 @@ import stepper from "./stepper.js";
 import controller from "./controller.js";
 import { app } from './pixi-app.js';
 
+
+// sprite with live graphics (extend this using a draw function)
+// See lightning.js for an example
+export class GraphicsSprite extends PIXI.Sprite {
+  constructor() {
+    super();
+    this.animationSpeed = 60;
+    this.g = new PIXI.Graphics();
+    app.ticker.add(this.update, this);
+  }
+
+  set animationSpeed(speed) {
+    this.delay = 60 / speed;
+  }
+
+  set delay(d) {
+    this._delay = d;
+    this._currentTime = d;
+  }
+
+  update(dt) {
+    this._currentTime += dt;
+    if (this._currentTime > this._delay) {
+      this.updateTexture();
+      this._currentTime -= this._delay;
+    }
+  }
+
+  // same hook as animated sprite
+  updateTexture() {
+    if(this.draw) {
+        // update graphics
+        this.draw();
+        // create sprite texture from graphics
+        this.texture = app.renderer.generateTexture(this.g);
+    }
+    // provide same hook as animated sprite
+    if (this.onFrameChange) {
+      this.onFrameChange();
+    }
+  }
+}
+
 // extend PIXIs animated sprite
 export class PixelSprite extends PIXI.AnimatedSprite {
   constructor(sheetId, animationId, pixelSize) {

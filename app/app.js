@@ -1,6 +1,6 @@
 // Import all
 
-import TiledMap from './tiledmap.js';
+import TiledMap from "./tiledmap.js";
 import { app, options } from "./pixi-app.js";
 import resize from "./resize.js";
 import { FloatingSprite, AnchoredSprite, StepperSprite } from "./sprite.js";
@@ -9,7 +9,11 @@ import fullscreen from "./fullscreen.js";
 import Poly from "./poly.js";
 import webfonts from "./webfonts.js";
 import helpscreen from "./helpscreen.js";
-import hilite from './hilite.js';
+import hilite from "./hilite.js";
+import Lightning from "./lightning.js";
+import Fading from "./fading.js";
+//import pixi_tilemap from "./pixi-tilemap.js";
+import { AdvancedBloomFilter } from "./filters/filter-advanced-bloom.js";
 
 (async () => {
   // make sure to load all webfonts first
@@ -31,9 +35,8 @@ function startup() {
   // dynamically resize the app to fixed aspect ratio
   resize(aspectRatio);
 
-  let layer = new TiledMap(app, "tilesheet", "tiledmap"); 
+  let layer = new TiledMap(app, "tilesheet", "tiledmap");
   app.stage.addChild(layer);
-
 
   // create a sprite the animates while moving
   let pixelpal = new FloatingSprite("pixelpal", "walk", 2);
@@ -49,7 +52,7 @@ function startup() {
   // add a custom color filter, because we can ...
   stepperguy.filters = [
     colorFilter(0xff3333, 0x3333ff),
-    colorFilter(0xcc0000, 0x0000cc)
+    colorFilter(0xcc0000, 0x0000cc),
   ];
 
   hilite(littleguy);
@@ -73,10 +76,36 @@ function startup() {
   //hex2.angle = 30;
   app.stage.addChild(poly2);
 
+
+  // single lightning stroke with bloom
+  let singlestroke = new Lightning({ x: 200, y: 200 }, { x: 1000, y: 200 });
+  singlestroke.filters = [
+    new AdvancedBloomFilter({
+      bloomScale: 1.0,
+      brightness: 1.0,
+      threshold: 0.5,
+    })
+  ];
+  singlestroke.animationSpeed = 20;
+  app.stage.addChild(singlestroke);
+
+  // create fading lighning strokes with bloom
+  let singlestroke2 = new Lightning({ x: 200, y: 650 }, { x: 1000, y: 650 });
+  singlestroke2.animationSpeed = 20;
+  let multistroke = new Fading(singlestroke2, 0.2);
+  multistroke.filters = [
+    new AdvancedBloomFilter({
+      bloomScale: 0.8,
+      brightness: 1.0,
+      threshold: 0.5,
+    }),
+  ];
+  app.stage.addChild(multistroke);
+
+
   // fullscreen('f', 'Control');
   fullscreen("f");
-  
+
   // fullscreen('h', 'Control');
   helpscreen("h");
-  
 }

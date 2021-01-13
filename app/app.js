@@ -14,6 +14,7 @@ import Lightning from "./lightning.js";
 import Fading from "./fading.js";
 //import pixi_tilemap from "./pixi-tilemap.js";
 import { AdvancedBloomFilter } from "./filters/filter-advanced-bloom.js";
+import menuscreen from "./menu.js";
 
 (async () => {
   // make sure to load all webfonts first
@@ -89,7 +90,7 @@ function startup() {
   singlestroke.animationSpeed = 20;
   app.stage.addChild(singlestroke);
 
-  // create fading lighning strokes with bloom
+  // create fading lightning strokes with bloom
   let singlestroke2 = new Lightning({ x: 200, y: 650 }, { x: 1000, y: 650 });
   singlestroke2.animationSpeed = 20;
   let multistroke = new Fading(singlestroke2, 0.2);
@@ -108,4 +109,8 @@ function startup() {
 
   // fullscreen('h', 'Control');
   helpscreen("h");
+
+  // menuscreen ...
+  menuscreen("m");
+
 }

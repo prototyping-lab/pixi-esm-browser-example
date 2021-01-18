@@ -1,5 +1,6 @@
 // Import all
 
+// test
 import TiledMap from "./tiledmap.js";
 import { app, options } from "./pixi-app.js";
 import resize from "./resize.js";
